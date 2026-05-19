@@ -1,7 +1,8 @@
 # Avans-ATLS.github.io
 
-## Eiwit peptide coverage visualisatie
+## [Eiwit peptide coverage visualisatie](https://avans-atls.github.io/prot_pep_cov.html)
 Een interactieve tool die peptide coverage op een eiwit sequentie visualiseert.
+Bereikbaar via: https://avans-atls.github.io/prot_pep_cov.html
 
 ### Input
 De volgende input is nodig voor de visualisatie:
