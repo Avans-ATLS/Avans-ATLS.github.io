@@ -6,12 +6,12 @@ Bereikbaar via: https://avans-atls.github.io/prot_pep_cov.html
 
 ### Input
 De volgende input is nodig voor de visualisatie:
-- FASTA bestand met volledige eiwit sequentie
+- [FASTA bestand met volledige eiwit sequentie](https://github.com/Avans-ATLS/Avans-ATLS.github.io/blob/main/voorbeeld_eiwit_GH.fasta)
 ```txt
 >voorbeeld_eiwit_1
 AVANSATLSMVMKLAVANSATLSMVMKLLKMVMSLTASNAVA
 ```
-- Excel bestand met peptide lijst in eerste sheet, header "Sequence" in A1, peptides in A2+
+- [Excel bestand met peptide lijst in eerste sheet, header "Sequence" in A1, peptides in A2+](https://github.com/Avans-ATLS/Avans-ATLS.github.io/blob/main/peptides_GH_voorbeeld.xlsx)
 ```txt
 # Excel bestand met 1 sheet
 Sequence
