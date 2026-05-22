@@ -13,35 +13,43 @@
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
   :root {
-    --bg:        #0f1117;
-    --surface:   #1a1d27;
-    --surface2:  #22263a;
-    --border:    #2e3349;
-    --accent:    #4ade80;
-    --accent-dim:#1a3d28;
-    --danger:    #f87171;
-    --danger-dim:#3d1a1a;
-    --warn:      #fbbf24;
-    --text:      #e2e8f0;
-    --muted:     #64748b;
-    --mono:      'IBM Plex Mono', monospace;
-    --sans:      'IBM Plex Sans', sans-serif;
+    --bg:         #0f1117;
+    --surface:    #1a1d27;
+    --surface2:   #22263a;
+    --border:     #2e3349;
+    --accent:     #44AA99;
+    --accent-dim: #0d3030;
+    --accent2:    #AA4499;
+    --accent2-dim:#300d30;
+    --both:       #5140a7d9;
+    --both-dim:   #b37ed8;
+    --danger:     #f87171;
+    --danger-dim: #3d1a1a;
+    --warn:       #fbbf24;
+    --text:       #e2e8f0;
+    --muted:      #64748b;
+    --mono:       'IBM Plex Mono', monospace;
+    --sans:       'IBM Plex Sans', sans-serif;
   }
 
   :root.light {
-    --bg:        #ffffff;
-    --surface:   #f6f8fa;
-    --surface2:  #eaeef2;
-    --border:    #d0d7de;
-    --accent:    #22863a;
-    --accent-dim:#e6f0eb;
-    --danger:    #da3633;
-    --danger-dim:#ffebe9;
-    --warn:      #9e6a03;
-    --text:      #1f2328;
-    --muted:     #656d76;
-    --mono:      'IBM Plex Mono', monospace;
-    --sans:      'IBM Plex Sans', sans-serif;
+    --bg:         #ffffff;
+    --surface:    #f6f8fa;
+    --surface2:   #eaeef2;
+    --border:     #d0d7de;
+    --accent:     #2a7a6a;
+    --accent-dim: #e0f0ee;
+    --accent2:    #8a3a80;
+    --accent2-dim:#f0e0ee;
+    --both:       #5140a7d9;
+    --both-dim:   #b37ed8;
+    --danger:     #da3633;
+    --danger-dim: #ffebe9;
+    --warn:       #9e6a03;
+    --text:       #1f2328;
+    --muted:      #656d76;
+    --mono:       'IBM Plex Mono', monospace;
+    --sans:       'IBM Plex Sans', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,18 +72,9 @@
     gap: 14px;
     background: var(--surface);
   }
-  header h1 {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-  }
-  header span {
-    font-size: 12px;
-    color: var(--muted);
-    font-family: var(--mono);
-  }
+  header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
+  header span { font-size: 12px; color: var(--muted); font-family: var(--mono); }
 
-/* Toggle button for light/dark mode */
   .theme-toggle {
     margin-left: auto;
     background: var(--surface2);
@@ -90,26 +89,22 @@
     color: var(--text);
     font-family: var(--sans);
   }
-  .theme-toggle:hover {
-    background: var(--border);
-  }
-  .theme-toggle .icon {
-    font-size: 14px;
-  }
+  .theme-toggle:hover { background: var(--border); }
+  .theme-toggle .icon { font-size: 14px; }
 
   /* ── Layout ── */
-  .container { max-width: 1050px; margin: 0 auto; padding: 32px 24px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 
   /* ── Upload grid ── */
   .upload-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr auto;
     gap: 16px;
     margin-bottom: 20px;
+    align-items: start;
   }
-  @media (max-width: 700px) {
-    .upload-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 900px) { .upload-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .upload-grid { grid-template-columns: 1fr; } }
 
   label.field-label {
     display: block;
@@ -120,6 +115,7 @@
     color: var(--muted);
     margin-bottom: 8px;
   }
+  label.field-label.l2-label { color: var(--accent2); }
 
   .drop-zone {
     border: 1.5px dashed var(--border);
@@ -137,19 +133,18 @@
     gap: 6px;
     position: relative;
   }
-  .drop-zone:hover, .drop-zone.drag-over {
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-dim); }
+  .drop-zone.l2-zone:hover, .drop-zone.l2-zone.drag-over { border-color: var(--accent2); background: var(--accent2-dim); }
   .drop-zone.loaded { border-color: var(--accent); border-style: solid; }
-  .drop-zone input[type=file] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
-  .drop-icon { font-size: 22px; }
-  .drop-label { font-size: 13px; color: var(--muted); }
-  .drop-status { font-size: 12px; color: var(--accent); font-family: var(--mono); margin-top: 2px; }
+  .drop-zone.l2-zone.loaded { border-color: var(--accent2); border-style: solid; }
+  .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .drop-icon    { font-size: 22px; }
+  .drop-label   { font-size: 13px; color: var(--muted); }
+  .drop-status  { font-size: 12px; color: var(--accent); font-family: var(--mono); margin-top: 2px; }
+  .drop-status.l2-status { color: var(--accent2); }
+  .drop-optional { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
 
-  /* ── Opties paneel ── */
+  /* ── Options panel ── */
   .options-panel { display: flex; flex-direction: column; gap: 10px; justify-content: flex-start; }
 
   input[type=text], select {
@@ -165,6 +160,7 @@
     transition: border-color .15s;
   }
   input[type=text]:focus, select:focus { border-color: var(--accent); }
+  #col-name-2:focus { border-color: var(--accent2); }
 
   /* ── Buttons ── */
   .btn-row { display: flex; gap: 10px; margin-bottom: 28px; }
@@ -180,30 +176,33 @@
     transition: opacity .15s, transform .1s;
   }
   button:active { transform: scale(.97); }
-  #run-btn {
-    background: var(--accent);
-    color: #0a1f12;
-    font-weight: 600;
-  }
+  #run-btn { background: var(--accent); color: #061a18; font-weight: 600; }
   #run-btn:disabled { opacity: .4; cursor: not-allowed; }
-  #reset-btn {
-    background: var(--surface2);
-    color: var(--muted);
-    border: 1px solid var(--border);
-  }
+  #reset-btn { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
 
   /* ── Alert ── */
-  .alert {
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 13px;
-    margin-bottom: 20px;
-    display: none;
+  .alert { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 20px; display: none; }
+  .alert.show  { display: block; }
+  .alert.warn  { background: #2d2200; color: var(--warn); border: 1px solid #5a4200; }
+  .alert.err   { background: var(--danger-dim); color: var(--danger); border: 1px solid #6b1e1e; }
+  .alert.info  { background: var(--accent-dim); color: var(--accent); border: 1px solid #1e5e38; }
+
+  /* ── Mode badge ── */
+  .mode-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
   }
-  .alert.show { display: block; }
-  .alert.warn { background: #2d2200; color: var(--warn); border: 1px solid #5a4200; }
-  .alert.err  { background: var(--danger-dim); color: var(--danger); border: 1px solid #6b1e1e; }
-  .alert.info { background: var(--accent-dim); color: var(--accent); border: 1px solid #1e5e38; }
+  .mode-badge.single   { background: var(--accent-dim);  color: var(--accent);  border: 1px solid var(--accent); }
+  .mode-badge.pairwise { background: var(--both-dim);    color: var(--both);    border: 1px solid var(--both); }
 
   /* ── Stats bar ── */
   .stats-bar {
@@ -218,26 +217,33 @@
   .stat:last-child { border-right: none; }
   .stat .val { font-size: 26px; font-weight: 600; font-family: var(--mono); color: var(--text); }
   .stat .val.green { color: var(--accent); }
+  .stat .val.blue  { color: var(--accent2); }
   .stat .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .06em; }
 
-  /* ── Progress bar ── */
-  .prog-wrap {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-top: none;
-    padding: 12px 16px;
+  /* ── Pairwise dual stats ── */
+  .stats-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .list-header {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px 6px 0 0;
+    text-transform: uppercase;
+    letter-spacing: .06em;
   }
+  .list-header.l1 { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); border-bottom: none; }
+  .list-header.l2 { background: var(--accent2-dim); color: var(--accent2); border: 1px solid var(--accent2); border-bottom: none; }
+  .stats-dual .stats-bar { border-radius: 0 10px 0 0; }
+
+  /* ── Progress bar ── */
+  .prog-wrap { background: var(--surface2); border: 1px solid var(--border); border-top: none; padding: 12px 16px; }
   .prog-track { background: var(--border); border-radius: 4px; height: 8px; }
   .prog-fill  { background: var(--accent); height: 8px; border-radius: 4px; transition: width .5s ease; }
+  .prog-fill.l2 { background: var(--accent2); }
   .prog-label { font-size: 11px; color: var(--muted); margin-top: 5px; font-family: var(--mono); }
 
   /* ── Protein header ── */
-  .prot-header {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-top: none;
-    padding: 10px 16px;
-  }
+  .prot-header { background: var(--surface2); border: 1px solid var(--border); border-top: none; padding: 10px 16px; }
   .prot-name { font-size: 13px; font-weight: 600; font-family: var(--mono); color: var(--text); }
   .prot-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
@@ -252,23 +258,22 @@
     border-top: none;
     overflow-x: auto;
   }
-  .seq-row { white-space: nowrap; margin-bottom: 1px; }
-  .pos-num { display: inline-block; width: 46px; color: var(--muted); font-size: 11px; user-select: none; }
-  .aa {
-    display: inline-block;
-    width: 13px;
-    text-align: center;
-    border-radius: 2px;
-    cursor: default;
-    transition: transform .1s;
-  }
+  .seq-row    { white-space: nowrap; margin-bottom: 0; }
+  .seq-group  { margin-bottom: 6px; }
+  .pos-num    { display: inline-block; width: 46px; color: var(--muted); font-size: 11px; user-select: none; }
+  .seq-list-label { display: inline-block; width: 20px; font-size: 9px; font-weight: 700; letter-spacing: .05em; user-select: none; text-align: right; padding-right: 4px; }
+  .seq-list-label.l1-lbl { color: #44AA99; }
+  .seq-list-label.l2-lbl { color: #AA4499; }
+  .aa       { display: inline-block; width: 13px; text-align: center; border-radius: 2px; cursor: default; transition: transform .1s; }
   .aa:hover { transform: scale(1.4); z-index: 1; position: relative; }
-  .aa-hit  { background: #14532d; color: var(--accent); font-weight: 600; }
-  .aa-miss { color: #475569; }
+  .aa-hit   { background: #44AA99; color: #fff;  font-weight: 600; }
+  .aa-hit2  { background: #AA4499; color: #fff; font-weight: 600; }
+  .aa-both  { background: #5140a7d9; color: #fff;    font-weight: 600; }
+  .aa-miss  { color: #d0b2b2; }
 
   /* ── Legend ── */
   .legend {
-    display: flex; gap: 18px;
+    display: flex; gap: 18px; flex-wrap: wrap;
     padding: 8px 16px;
     background: var(--surface2);
     border: 1px solid var(--border);
@@ -277,23 +282,59 @@
     color: var(--muted);
   }
   .legend-item { display: flex; align-items: center; gap: 6px; }
-  .legend-box { width: 12px; height: 12px; border-radius: 2px; }
+  .legend-box  { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
 
-  /* ── Peptide tabel ── */
-  .pep-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 20px;
-  }
-  @media (max-width: 650px) { .pep-section { grid-template-columns: 1fr; } }
-
-  .pep-box {
-    background: var(--surface);
+  /* ── Comparison section ── */
+  .comparison-section {
     border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 20px;
+    background: var(--surface);
   }
+  .comparison-header {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .comparison-cell { padding: 18px 16px; text-align: center; border-right: 1px solid var(--border); }
+  .comparison-cell:last-child { border-right: none; }
+  .comparison-cell .cval { font-size: 30px; font-weight: 600; font-family: var(--mono); }
+  .comparison-cell .cval.shared { color: var(--both); }
+  .comparison-cell .cval.only1  { color: var(--accent); }
+  .comparison-cell .cval.only2  { color: var(--accent2); }
+  .comparison-cell .clbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+  .comparison-cell .csub { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+
+  .cov-bars { padding: 14px 16px; border-top: 1px solid var(--border); }
+  .cov-bar-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .06em; }
+  .cov-bar-track {
+    height: 14px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    display: flex;
+  }
+  .cov-bar-both  { background: var(--both); }
+  .cov-bar-only1 { background: var(--accent); }
+  .cov-bar-only2 { background: var(--accent2); }
+  .cov-bar-none  { background: transparent; flex: 1; }
+  .cov-bar-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted); }
+  .cov-bar-legend-item { display: flex; align-items: center; gap: 5px; }
+  .cov-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
+
+  /* ── Peptide tables ── */
+  .pep-section { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .pep-section.pairwise-peps { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 1000px) { .pep-section.pairwise-peps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 650px)  { .pep-section, .pep-section.pairwise-peps { grid-template-columns: 1fr; } }
+
+  .pep-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
   .pep-box-header {
     padding: 10px 14px;
     font-size: 12px;
@@ -303,69 +344,45 @@
     border-bottom: 1px solid var(--border);
     background: var(--surface2);
   }
-  .pep-box-header.found-header { color: var(--accent); }
-  .pep-box-header.miss-header  { color: var(--danger); }
+  .pep-box-header.found-header  { color: var(--accent); }
+  .pep-box-header.found2-header { color: var(--accent2); }
+  .pep-box-header.miss-header   { color: var(--danger); }
 
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th {
-    padding: 7px 10px;
-    text-align: left;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 500;
-    border-bottom: 1px solid var(--border);
-  }
+  th { padding: 7px 10px; text-align: left; color: var(--muted); font-size: 11px; font-weight: 500; border-bottom: 1px solid var(--border); }
   td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   tr:last-child td { border-bottom: none; }
-  .pep-seq { font-family: var(--mono); letter-spacing: 1px; }
+  .pep-seq        { font-family: var(--mono); letter-spacing: 1px; }
   .pep-seq.found  { color: var(--accent); }
+  .pep-seq.found2 { color: var(--accent2); }
   .pep-seq.missed { color: var(--danger); }
-  .pos-cell { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+  .pos-cell       { color: var(--muted); font-family: var(--mono); font-size: 11px; }
 
-  /* ── Export knop ── */
+  /* ── Export ── */
   .export-row { margin-top: 16px; display: flex; justify-content: flex-end; }
-  #export-btn {
-    background: var(--surface2);
-    color: var(--text);
-    border: 1px solid var(--border);
-    font-size: 12px;
-    padding: 8px 16px;
-  }
+  #export-btn { background: var(--surface2); color: var(--text); border: 1px solid var(--border); font-size: 12px; padding: 8px 16px; }
 
   /* ── Hidden results ── */
   #results { display: none; }
 </style>
 </head>
+
 <script>
-  // Load saved theme or default to dark
   function initializeTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
       document.documentElement.classList.add('light');
-      document.getElementById('theme-icon').textContent = '☀️';
+      document.getElementById('theme-icon').textContent = '\u2600\uFE0F';
       document.getElementById('theme-text').textContent = 'Dark';
     }
   }
-
-  // Toggle between light and dark mode
   function toggleTheme() {
     const html = document.documentElement;
     const isLight = html.classList.toggle('light');
-    const icon = document.getElementById('theme-icon');
-    const text = document.getElementById('theme-text');
-
-    if (isLight) {
-      icon.textContent = '☀️';
-      text.textContent = 'Dark';
-      localStorage.setItem('theme', 'light');
-    } else {
-      icon.textContent = '🌙';
-      text.textContent = 'Light';
-      localStorage.setItem('theme', 'dark');
-    }
+    document.getElementById('theme-icon').textContent = isLight ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    document.getElementById('theme-text').textContent = isLight ? 'Dark' : 'Light';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
   }
-
-  // Initialize theme on page load
   document.addEventListener('DOMContentLoaded', initializeTheme);
 </script>
 
@@ -373,9 +390,9 @@
 
 <header>
   <h1>Eiwit/peptide coverage visualisatie</h1>
-  <span>FASTA + Excel → coverage map</span>
+  <span>FASTA + Excel &rarr; coverage map</span>
   <button class="theme-toggle" onclick="toggleTheme()">
-    <span class="icon" id="theme-icon">🌙</span>
+    <span class="icon" id="theme-icon">&#127769;</span>
     <span id="theme-text">Light</span>
   </button>
 </header>
@@ -387,37 +404,52 @@
 
     <!-- FASTA -->
     <div>
-      <label class="field-label">① FASTA bestand eiwit sequentie</label>
+      <label class="field-label">&#9312; FASTA eiwit sequentie</label>
       <div class="drop-zone" id="fasta-zone">
         <input type="file" id="fasta-file" accept=".fasta,.fa,.faa,.txt">
-        <div class="drop-label">Sleep of klik om lokale FASTA te selecteren</div>
+        <div class="drop-label">Sleep of klik voor FASTA</div>
         <div class="drop-status" id="fasta-status"></div>
       </div>
     </div>
 
-    <!-- Excel -->
+    <!-- Peptide lijst 1 -->
     <div>
-      <label class="field-label">② Excel bestand met peptide lijst in eerste sheet</label>
+      <label class="field-label">&#9313; Peptide lijst 1</label>
       <div class="drop-zone" id="excel-zone">
         <input type="file" id="excel-file" accept=".xlsx,.xls,.csv">
-        <div class="drop-label">Sleep of klik om Excel te selecteren</div>
+        <div class="drop-label">Sleep of klik voor Excel/CSV</div>
         <div class="drop-status" id="excel-status"></div>
+      </div>
+    </div>
+
+    <!-- Peptide lijst 2 (optioneel) -->
+    <div>
+      <label class="field-label">&#9314; Peptide lijst 2 <span style="font-weight:400;opacity:.7">(optioneel)</span></label>
+      <div class="drop-zone l2-zone" id="excel2-zone">
+        <input type="file" id="excel2-file" accept=".xlsx,.xls,.csv">
+        <div class="drop-label">Sleep of klik voor Excel/CSV</div>
+        <div class="drop-status l2-status" id="excel2-status"></div>
+        <div class="drop-optional">Optioneel; voor pairwise analyse</div>
       </div>
     </div>
 
     <!-- Opties -->
     <div class="options-panel">
       <div>
-        <label class="field-label">Peptide header Excel</label>
+        <label class="field-label">Peptide kolom (lijst 1)</label>
         <input type="text" id="col-name" value="Sequence" placeholder="bijv. Sequence">
+      </div>
+      <div>
+        <label class="field-label">Peptide kolom (lijst 2)</label>
+        <input type="text" id="col-name-2" value="Sequence" placeholder="bijv. Sequence">
       </div>
       <div>
         <label class="field-label">Residuen per rij</label>
         <select id="row-width">
           <option value="10">10</option>
           <option value="30">30</option>
-          <option value="60" selected>60</option>
-          <option value="80">80</option>
+          <option value="60">60</option>
+          <option value="80" selected>80</option>
         </select>
       </div>
     </div>
@@ -436,72 +468,110 @@
   <!-- Resultaten -->
   <div id="results">
 
+    <!-- Mode badge -->
+    <div id="mode-badge" class="mode-badge single">Single analyse</div>
+
     <!-- Protein header -->
     <div class="prot-header">
       <div class="prot-name" id="prot-name-display"></div>
       <div class="prot-meta" id="prot-meta-display"></div>
     </div>
 
-    <!-- Stats -->
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="val green" id="stat-pct">—</div>
-        <div class="lbl">Coverage</div>
+    <!-- Stats single mode -->
+    <div id="stats-single">
+      <div class="stats-bar">
+        <div class="stat"><div class="val green" id="stat-pct">&#8212;</div><div class="lbl">Coverage</div></div>
+        <div class="stat"><div class="val" id="stat-res">&#8212;</div><div class="lbl">Residuen gedekt</div></div>
+        <div class="stat"><div class="val" id="stat-mapped">&#8212;</div><div class="lbl">Peptiden gemapped</div></div>
+        <div class="stat"><div class="val" id="stat-miss">&#8212;</div><div class="lbl">Niet gemapped</div></div>
       </div>
-      <div class="stat">
-        <div class="val" id="stat-res">—</div>
-        <div class="lbl">Residuen gedekt</div>
-      </div>
-      <div class="stat">
-        <div class="val" id="stat-mapped">—</div>
-        <div class="lbl">Peptiden gemapped</div>
-      </div>
-      <div class="stat">
-        <div class="val" id="stat-miss">—</div>
-        <div class="lbl">Niet gemapped</div>
+      <div class="prog-wrap">
+        <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+        <div class="prog-label" id="prog-label"></div>
       </div>
     </div>
 
-    <!-- Progress bar -->
-    <div class="prog-wrap">
-      <div class="prog-track">
-        <div class="prog-fill" id="prog-fill" style="width:0%"></div>
+    <!-- Stats pairwise mode -->
+    <div id="stats-pairwise" style="display:none">
+      <div class="stats-dual">
+        <div>
+          <div class="list-header l1">Lijst 1</div>
+          <div class="stats-bar" style="border-radius:0 10px 0 0">
+            <div class="stat"><div class="val green" id="stat-pct-1">&#8212;</div><div class="lbl">Coverage</div></div>
+            <div class="stat"><div class="val" id="stat-res-1">&#8212;</div><div class="lbl">Residuen</div></div>
+            <div class="stat"><div class="val" id="stat-mapped-1">&#8212;</div><div class="lbl">Gemapped</div></div>
+            <div class="stat"><div class="val" id="stat-miss-1">&#8212;</div><div class="lbl">Gemist</div></div>
+          </div>
+          <div class="prog-wrap" style="border-radius:0">
+            <div class="prog-track"><div class="prog-fill" id="prog-fill-1" style="width:0%"></div></div>
+            <div class="prog-label" id="prog-label-1"></div>
+          </div>
+        </div>
+        <div>
+          <div class="list-header l2">Lijst 2</div>
+          <div class="stats-bar" style="border-radius:0 10px 0 0">
+            <div class="stat"><div class="val blue" id="stat-pct-2">&#8212;</div><div class="lbl">Coverage</div></div>
+            <div class="stat"><div class="val" id="stat-res-2">&#8212;</div><div class="lbl">Residuen</div></div>
+            <div class="stat"><div class="val" id="stat-mapped-2">&#8212;</div><div class="lbl">Gemapped</div></div>
+            <div class="stat"><div class="val" id="stat-miss-2">&#8212;</div><div class="lbl">Gemist</div></div>
+          </div>
+          <div class="prog-wrap" style="border-radius:0">
+            <div class="prog-track"><div class="prog-fill l2" id="prog-fill-2" style="width:0%"></div></div>
+            <div class="prog-label" id="prog-label-2"></div>
+          </div>
+        </div>
       </div>
-      <div class="prog-label" id="prog-label"></div>
     </div>
 
-    <!-- Sequence -->
+    <!-- Sequence map -->
     <div class="seq-wrap" id="seq-display"></div>
 
-    <!-- Legenda -->
-    <div class="legend">
-      <div class="legend-item">
-        <span class="legend-box" style="background:#14532d; border: 1px solid #4ade80;"></span>
-        Gevonden (gedekt door ≥1 peptide)
+    <!-- Legend -->
+    <div class="legend" id="legend-box"></div>
+
+    <!-- Comparison section (pairwise only) -->
+    <div class="comparison-section" id="comparison-section" style="display:none">
+      <div class="comparison-header">Vergelijking lijst 1 vs lijst 2</div>
+      <div class="comparison-grid">
+        <div class="comparison-cell">
+          <div class="cval shared" id="cmp-shared">&#8212;</div>
+          <div class="clbl">Gedeelde peptiden</div>
+          <div class="csub" id="cmp-shared-pct"></div>
+        </div>
+        <div class="comparison-cell">
+          <div class="cval only1" id="cmp-unique1">&#8212;</div>
+          <div class="clbl">Uniek in lijst 1</div>
+          <div class="csub" id="cmp-unique1-pct"></div>
+        </div>
+        <div class="comparison-cell">
+          <div class="cval only2" id="cmp-unique2">&#8212;</div>
+          <div class="clbl">Uniek in lijst 2</div>
+          <div class="csub" id="cmp-unique2-pct"></div>
+        </div>
       </div>
-      <div class="legend-item">
-        <span class="legend-box" style="background:#1e2231; border: 1px solid #2e3349;"></span>
-        Niet gevonden
+      <div class="cov-bars">
+        <div class="cov-bar-label">Coverage overlap op sequentie niveau</div>
+        <div class="cov-bar-track" id="cov-bar-track">
+          <div class="cov-bar-both"  id="cov-seg-both"></div>
+          <div class="cov-bar-only1" id="cov-seg-only1"></div>
+          <div class="cov-bar-only2" id="cov-seg-only2"></div>
+          <div class="cov-bar-none"></div>
+        </div>
+        <div class="cov-bar-legend">
+          <div class="cov-bar-legend-item"><span class="cov-dot" style="background:var(--both)"></span><span id="cov-leg-both">Beide lijsten</span></div>
+          <div class="cov-bar-legend-item"><span class="cov-dot" style="background:var(--accent)"></span><span id="cov-leg-only1">Alleen lijst 1</span></div>
+          <div class="cov-bar-legend-item"><span class="cov-dot" style="background:var(--accent2)"></span><span id="cov-leg-only2">Alleen lijst 2</span></div>
+          <div class="cov-bar-legend-item"><span class="cov-dot" style="background:var(--surface2);border:1px solid var(--border)"></span>Niet gedekt</div>
+        </div>
       </div>
     </div>
 
-    <!-- Peptide tabellen -->
-    <div class="pep-section">
-      <div class="pep-box">
-        <div class="pep-box-header found-header">Gevonden peptiden</div>
-        <table><thead><tr><th>Sequentie</th><th>Len</th><th>Positie(s)</th></tr></thead>
-        <tbody id="found-tbody"></tbody></table>
-      </div>
-      <div class="pep-box">
-        <div class="pep-box-header miss-header">Niet gevonden peptiden</div>
-        <table><thead><tr><th>Sequentie</th><th>Len</th></tr></thead>
-        <tbody id="miss-tbody"></tbody></table>
-      </div>
-    </div>
+    <!-- Peptide tables -->
+    <div class="pep-section" id="pep-section"></div>
 
     <!-- Export -->
     <div class="export-row">
-      <button id="export-btn" onclick="exportCSV()">⬇ Exporteer als CSV</button>
+      <button id="export-btn" onclick="exportCSV()">Exporteer als CSV</button>
     </div>
 
   </div><!-- /results -->
@@ -510,9 +580,10 @@
 
 <script>
 // ── State ─────────────────────────────────────────────────────────────
-let fastaData   = null;  // { name, sequence }[]
-let peptideData = null;  // string[]
-let lastResult  = null;  // { hits, misses, covered, sequence, proteinName }
+let fastaData    = null;
+let peptideData  = null;
+let peptideData2 = null;
+let lastResult   = null;
 
 // ── FASTA parsen ──────────────────────────────────────────────────────
 function parseFasta(text) {
@@ -532,28 +603,50 @@ function parseFasta(text) {
   return proteins;
 }
 
-// ── Excel parsen (SheetJS) ────────────────────────────────────────────
+// ── Excel / CSV parsen ────────────────────────────────────────────────
 function parseExcel(arrayBuffer, colName) {
   const wb   = XLSX.read(arrayBuffer, { type: 'array' });
   const ws   = wb.Sheets[wb.SheetNames[0]];
   const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
   if (!rows.length) return { peps: null, cols: [] };
-
-  const cols = Object.keys(rows[0]);
+  const cols  = Object.keys(rows[0]);
   const match = cols.find(c => c.trim().toLowerCase() === colName.trim().toLowerCase());
   if (!match) return { peps: null, cols };
-
   const peps = rows
     .map(r => String(r[match]).toUpperCase().replace(/[^A-Z]/g, ''))
     .filter(p => p.length > 0);
   return { peps, cols };
 }
 
+function parseCsvText(text, colName) {
+  const lines   = text.split('\n').map(l => l.trim()).filter(l => l);
+  const headers = lines[0].split(/[,;\t]/);
+  const colIdx  = headers.findIndex(h => h.trim().toLowerCase() === colName.trim().toLowerCase());
+  if (colIdx === -1) return { peps: null, cols: headers };
+  const peps = lines.slice(1)
+    .map(l => (l.split(/[,;\t]/)[colIdx] || '').toUpperCase().replace(/[^A-Z]/g, ''))
+    .filter(p => p.length > 0);
+  return { peps, cols: headers };
+}
+
+async function readPeptideFile(file, colName) {
+  if (file.name.toLowerCase().endsWith('.csv')) {
+    const text = await readFileText(file);
+    const { peps, cols } = parseCsvText(text, colName);
+    if (!peps) throw new Error('Kolom "' + colName + '" niet gevonden. Beschikbare kolommen: ' + cols.join(', '));
+    return peps;
+  } else {
+    const buf = await readFileBuffer(file);
+    const { peps, cols } = parseExcel(buf, colName);
+    if (!peps) throw new Error('Kolom "' + colName + '" niet gevonden. Beschikbare kolommen: ' + cols.join(', '));
+    return peps;
+  }
+}
+
 // ── Peptide mapping ───────────────────────────────────────────────────
 function mapPeptides(sequence, peptides) {
   const covered = new Uint8Array(sequence.length);
   const hits = [], misses = [];
-
   for (const pep of peptides) {
     const positions = [];
     let idx = sequence.indexOf(pep);
@@ -568,24 +661,57 @@ function mapPeptides(sequence, peptides) {
   return { covered, hits, misses };
 }
 
-// ── Sequence visualisatie ─────────────────────────────────────────────
+// ── Sequence HTML builders ────────────────────────────────────────────
 function buildSeqHTML(sequence, covered, width) {
   let html = '';
   for (let i = 0; i < sequence.length; i += width) {
     const chunk = sequence.slice(i, i + width);
-    let row = `<span class="pos-num">${String(i + 1).padStart(5)}</span>`;
+    let row = '<span class="pos-num">' + String(i + 1).padStart(5) + '</span>';
     for (let j = 0; j < chunk.length; j++) {
-      const aa  = chunk[j];
       const pos = i + j;
       const cls = covered[pos] ? 'aa aa-hit' : 'aa aa-miss';
-      row += `<span class="${cls}" title="pos ${pos+1}: ${aa}">${aa}</span>`;
+      row += '<span class="' + cls + '" title="pos ' + (pos+1) + ': ' + chunk[j] + '">' + chunk[j] + '</span>';
     }
-    html += `<div class="seq-row">${row}</div>`;
+    html += '<div class="seq-row">' + row + '</div>';
   }
   return html;
 }
 
-// ── Bestand lezen helpers ─────────────────────────────────────────────
+function buildPairwiseSeqHTML(sequence, c1, c2, width) {
+  let html = '';
+  for (let i = 0; i < sequence.length; i += width) {
+    const chunk = sequence.slice(i, i + width);
+
+    // Row 1 – List 1
+    let row1 = '<span class="pos-num">' + String(i + 1).padStart(5) + '</span>';
+    row1 += '<span class="seq-list-label l1-lbl">L1</span>';
+    for (let j = 0; j < chunk.length; j++) {
+      const pos = i + j;
+      let cls1, tip1;
+      if      (c1[pos] && c2[pos]) { cls1 = 'aa aa-both'; tip1 = 'beide lijsten'; }
+      else if (c1[pos])            { cls1 = 'aa aa-hit';  tip1 = 'alleen lijst 1'; }
+      else                         { cls1 = 'aa aa-miss'; tip1 = 'niet gedekt'; }
+      row1 += '<span class="' + cls1 + '" title="pos ' + (pos+1) + ': ' + chunk[j] + ' \u003A ' + tip1 + '">' + chunk[j] + '</span>';
+    }
+
+    // Row 2 – List 2 (blank position number to keep alignment)
+    let row2 = '<span class="pos-num"></span>';
+    row2 += '<span class="seq-list-label l2-lbl">L2</span>';
+    for (let j = 0; j < chunk.length; j++) {
+      const pos = i + j;
+      let cls2, tip2;
+      if      (c1[pos] && c2[pos]) { cls2 = 'aa aa-both'; tip2 = 'beide lijsten'; }
+      else if (c2[pos])            { cls2 = 'aa aa-hit2'; tip2 = 'alleen lijst 2'; }
+      else                         { cls2 = 'aa aa-miss'; tip2 = 'niet gedekt'; }
+      row2 += '<span class="' + cls2 + '" title="pos ' + (pos+1) + ': ' + chunk[j] + ' \u003A ' + tip2 + '">' + chunk[j] + '</span>';
+    }
+
+    html += '<div class="seq-group"><div class="seq-row">' + row1 + '</div><div class="seq-row">' + row2 + '</div></div>';
+  }
+  return html;
+}
+
+// ── File reader helpers ───────────────────────────────────────────────
 function readFileText(file) {
   return new Promise((res, rej) => {
     const r = new FileReader();
@@ -611,8 +737,7 @@ document.getElementById('fasta-file').addEventListener('change', async function(
     const text = await readFileText(file);
     fastaData = parseFasta(text);
     if (!fastaData.length) { showAlert('Geen eiwitsequenties gevonden in FASTA bestand.', 'err'); return; }
-    document.getElementById('fasta-status').textContent =
-      `✓ ${file.name} — ${fastaData.length} eiwit(ten)`;
+    document.getElementById('fasta-status').textContent = '\u2713 ' + file.name + ' \u003A ' + fastaData.length + ' eiwit(ten)';
     document.getElementById('fasta-zone').classList.add('loaded');
     checkReady();
   } catch(e) { showAlert('Fout bij lezen FASTA: ' + e, 'err'); }
@@ -622,44 +747,31 @@ document.getElementById('excel-file').addEventListener('change', async function(
   const file = this.files[0];
   if (!file) return;
   try {
-    // CSV of Excel?
-    if (file.name.endsWith('.csv')) {
-      const text = await readFileText(file);
-      const colName = document.getElementById('col-name').value || 'Sequence';
-      // Simpele CSV parse
-      const lines = text.split('\n').map(l => l.trim()).filter(l => l);
-      const headers = lines[0].split(/[,;\t]/);
-      const colIdx = headers.findIndex(h => h.trim().toLowerCase() === colName.trim().toLowerCase());
-      if (colIdx === -1) {
-        showAlert(`Kolom "${colName}" niet gevonden. Beschikbare kolommen: ${headers.join(', ')}`, 'err');
-        return;
-      }
-      peptideData = lines.slice(1)
-        .map(l => l.split(/[,;\t]/)[colIdx] || '')
-        .map(p => p.toUpperCase().replace(/[^A-Z]/g, ''))
-        .filter(p => p.length > 0);
-    } else {
-      const buf = await readFileBuffer(file);
-      const colName = document.getElementById('col-name').value || 'Sequence';
-      const { peps, cols } = parseExcel(buf, colName);
-      if (!peps) {
-        showAlert(`Kolom "${colName}" niet gevonden in Excel. Beschikbare kolommen: ${cols.join(', ')}`, 'err');
-        return;
-      }
-      peptideData = peps;
-    }
-    document.getElementById('excel-status').textContent =
-      `✓ ${file.name} — ${peptideData.length} peptiden`;
+    const colName = document.getElementById('col-name').value || 'Sequence';
+    peptideData = await readPeptideFile(file, colName);
+    document.getElementById('excel-status').textContent = '\u2713 ' + file.name + ' \u003A ' + peptideData.length + ' peptiden';
     document.getElementById('excel-zone').classList.add('loaded');
     checkReady();
-  } catch(e) { showAlert('Fout bij lezen Excel: ' + e, 'err'); }
+  } catch(e) { showAlert('Fout bij lezen peptide lijst 1: ' + e, 'err'); }
+});
+
+document.getElementById('excel2-file').addEventListener('change', async function() {
+  const file = this.files[0];
+  if (!file) return;
+  try {
+    const colName = document.getElementById('col-name-2').value || 'Sequence';
+    peptideData2 = await readPeptideFile(file, colName);
+    document.getElementById('excel2-status').textContent = '\u2713 ' + file.name + ' \u003A ' + peptideData2.length + ' peptiden';
+    document.getElementById('excel2-zone').classList.add('loaded');
+    checkReady();
+  } catch(e) { showAlert('Fout bij lezen peptide lijst 2: ' + e, 'err'); }
 });
 
 // Drag-and-drop
-['fasta-zone', 'excel-zone'].forEach(id => {
+['fasta-zone', 'excel-zone', 'excel2-zone'].forEach(id => {
   const zone = document.getElementById(id);
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', ()  => zone.classList.remove('drag-over'));
   zone.addEventListener('drop', e => {
     e.preventDefault();
     zone.classList.remove('drag-over');
@@ -675,86 +787,229 @@ function checkReady() {
   document.getElementById('run-btn').disabled = !(fastaData && peptideData);
 }
 
-// ── Hoofd analyse ─────────────────────────────────────────────────────
+// ── Main analysis ─────────────────────────────────────────────────────
 function runAnalysis() {
   hideAlert();
-  if (!fastaData || !peptideData) { showAlert('Upload eerst beide bestanden.', 'warn'); return; }
+  if (!fastaData || !peptideData) { showAlert('Upload eerst FASTA en peptide lijst 1.', 'warn'); return; }
 
-  // Meerdere eiwitten?
   if (fastaData.length > 1) {
-    showAlert(`FASTA bevat ${fastaData.length} eiwitten — het eerste eiwit wordt gebruikt: "${fastaData[0].name.slice(0, 60)}"`, 'info');
+    showAlert('FASTA bevat ' + fastaData.length + ' eiwitten \u003A het eerste eiwit wordt gebruikt: "' + fastaData[0].name.slice(0, 60) + '"', 'info');
   }
 
   const { name: proteinName, sequence } = fastaData[0];
-  const width = parseInt(document.getElementById('row-width').value);
+  const width      = parseInt(document.getElementById('row-width').value);
+  const isPairwise = !!peptideData2;
 
-  const { covered, hits, misses } = mapPeptides(sequence, peptideData);
-  lastResult = { covered, hits, misses, sequence, proteinName };
+  const res1      = mapPeptides(sequence, peptideData);
+  const covCount1 = res1.covered.reduce((a, b) => a + b, 0);
+  const pct1      = sequence.length ? (covCount1 / sequence.length * 100) : 0;
 
-  const covCount = covered.reduce((a, b) => a + b, 0);
-  const pct      = sequence.length ? (covCount / sequence.length * 100) : 0;
+  let res2 = null, covCount2 = 0, pct2 = 0;
+  if (isPairwise) {
+    res2      = mapPeptides(sequence, peptideData2);
+    covCount2 = res2.covered.reduce((a, b) => a + b, 0);
+    pct2      = sequence.length ? (covCount2 / sequence.length * 100) : 0;
+  }
 
-  // Stats
+  lastResult = { res1, res2, sequence, proteinName, isPairwise };
+
   document.getElementById('prot-name-display').textContent = proteinName;
   document.getElementById('prot-meta-display').textContent =
-    `${sequence.length} aminozuren  ·  peptide coverage analyse`;
-  document.getElementById('stat-pct').textContent    = pct.toFixed(1) + '%';
-  document.getElementById('stat-res').textContent    = `${covCount} / ${sequence.length}`;
-  document.getElementById('stat-mapped').textContent = `${hits.length} / ${hits.length + misses.length}`;
-  document.getElementById('stat-miss').textContent   = misses.length;
+    sequence.length + ' aminozuren  \u00b7  ' + (isPairwise ? 'pairwise peptide coverage analyse' : 'peptide coverage analyse');
 
-  // Progress bar
-  document.getElementById('prog-fill').style.width = pct.toFixed(1) + '%';
-  document.getElementById('prog-label').textContent =
-    `${covCount} van ${sequence.length} aminozuren teruggevonden`;
+  const badge = document.getElementById('mode-badge');
+  badge.textContent = isPairwise ? 'Pairwise analyse' : '\u25C6 Single analyse';
+  badge.className   = 'mode-badge ' + (isPairwise ? 'pairwise' : 'single');
 
-  // Sequence map
-  document.getElementById('seq-display').innerHTML = buildSeqHTML(sequence, covered, width);
+  if (isPairwise) {
+    document.getElementById('stats-single').style.display   = 'none';
+    document.getElementById('stats-pairwise').style.display = 'block';
 
-  // Gevonden tabel
-  const foundTbody = document.getElementById('found-tbody');
-  foundTbody.innerHTML = hits.length
-    ? hits.map(h => {
-        const posStr = h.positions.map(([s, e]) => `${s+1}–${e+1}`).join(', ');
-        return `<tr>
-          <td class="pep-seq found">${h.pep}</td>
-          <td>${h.pep.length}</td>
-          <td class="pos-cell">${posStr}</td>
-        </tr>`;
-      }).join('')
-    : '<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:12px">Geen</td></tr>';
+    document.getElementById('stat-pct-1').textContent    = pct1.toFixed(1) + '%';
+    document.getElementById('stat-res-1').textContent    = covCount1 + ' / ' + sequence.length;
+    document.getElementById('stat-mapped-1').textContent = res1.hits.length + ' / ' + (res1.hits.length + res1.misses.length);
+    document.getElementById('stat-miss-1').textContent   = res1.misses.length;
+    document.getElementById('prog-fill-1').style.width   = pct1.toFixed(1) + '%';
+    document.getElementById('prog-label-1').textContent  = covCount1 + ' van ' + sequence.length + ' aminozuren';
 
-  // Niet-gemapped tabel
-  const missTbody = document.getElementById('miss-tbody');
-  missTbody.innerHTML = misses.length
-    ? misses.map(m =>
-        `<tr><td class="pep-seq missed">${m}</td><td>${m.length}</td></tr>`
-      ).join('')
-    : '<tr><td colspan="2" style="color:var(--accent);text-align:center;padding:12px">Alle peptiden gemapped! </td></tr>';
+    document.getElementById('stat-pct-2').textContent    = pct2.toFixed(1) + '%';
+    document.getElementById('stat-res-2').textContent    = covCount2 + ' / ' + sequence.length;
+    document.getElementById('stat-mapped-2').textContent = res2.hits.length + ' / ' + (res2.hits.length + res2.misses.length);
+    document.getElementById('stat-miss-2').textContent   = res2.misses.length;
+    document.getElementById('prog-fill-2').style.width   = pct2.toFixed(1) + '%';
+    document.getElementById('prog-label-2').textContent  = covCount2 + ' van ' + sequence.length + ' aminozuren';
+
+    document.getElementById('seq-display').innerHTML =
+      buildPairwiseSeqHTML(sequence, res1.covered, res2.covered, width);
+
+    document.getElementById('legend-box').innerHTML =
+      '<div class="legend-item"><span class="legend-box" style="background:#5140a7d9;border:1px solid var(--both)"></span>Beide lijsten gedekt</div>' +
+      '<div class="legend-item"><span class="seq-list-label l1-lbl" style="width:auto;padding:0 4px 0 0">L1</span><span class="legend-box" style="background:#44AA99;border:1px solid var(--accent)"></span>Alleen lijst 1</div>' +
+      '<div class="legend-item"><span class="seq-list-label l2-lbl" style="width:auto;padding:0 4px 0 0">L2</span><span class="legend-box" style="background:#AA4499;border:1px solid var(--accent2)"></span>Alleen lijst 2</div>' +
+      '<div class="legend-item"><span class="legend-box" style="background:#f6f8fa;border:1px solid #2e3349"></span>Niet gevonden</div>';
+
+    buildComparisonStats(res1, res2, sequence);
+    buildPairwisePepTables(res1, res2);
+
+  } else {
+    document.getElementById('stats-single').style.display   = 'block';
+    document.getElementById('stats-pairwise').style.display = 'none';
+
+    document.getElementById('stat-pct').textContent    = pct1.toFixed(1) + '%';
+    document.getElementById('stat-res').textContent    = covCount1 + ' / ' + sequence.length;
+    document.getElementById('stat-mapped').textContent = res1.hits.length + ' / ' + (res1.hits.length + res1.misses.length);
+    document.getElementById('stat-miss').textContent   = res1.misses.length;
+    document.getElementById('prog-fill').style.width   = pct1.toFixed(1) + '%';
+    document.getElementById('prog-label').textContent  = covCount1 + ' van ' + sequence.length + ' aminozuren teruggevonden';
+
+    document.getElementById('seq-display').innerHTML = buildSeqHTML(sequence, res1.covered, width);
+
+    document.getElementById('legend-box').innerHTML =
+      '<div class="legend-item"><span class="legend-box" style="background:##44AA99;border:1px solid #44AA99"></span>Gevonden (gedekt door \u22651 peptide)</div>' +
+      '<div class="legend-item"><span class="legend-box" style="background:#f6f8fa;border:1px solid #2e3349"></span>Niet gevonden</div>';
+
+    buildSinglePepTables(res1);
+    document.getElementById('comparison-section').style.display = 'none';
+  }
 
   document.getElementById('results').style.display = 'block';
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Comparison stats ──────────────────────────────────────────────────
+function buildComparisonStats(res1, res2, sequence) {
+  const allSet1  = new Set([...res1.hits.map(h => h.pep), ...res1.misses]);
+  const allSet2  = new Set([...res2.hits.map(h => h.pep), ...res2.misses]);
+  const shared   = [...allSet1].filter(p => allSet2.has(p));
+  const unique1  = [...allSet1].filter(p => !allSet2.has(p));
+  const unique2  = [...allSet2].filter(p => !allSet1.has(p));
+  const unionSz  = allSet1.size + allSet2.size - shared.length;
+
+  document.getElementById('cmp-shared').textContent      = shared.length;
+  document.getElementById('cmp-unique1').textContent     = unique1.length;
+  document.getElementById('cmp-unique2').textContent     = unique2.length;
+  document.getElementById('cmp-shared-pct').textContent  = unionSz > 0   ? (shared.length  / unionSz     * 100).toFixed(0) + '% van totale peptiden' : '';
+  document.getElementById('cmp-unique1-pct').textContent = allSet1.size > 0 ? (unique1.length / allSet1.size * 100).toFixed(0) + '% van lijst 1' : '';
+  document.getElementById('cmp-unique2-pct').textContent = allSet2.size > 0 ? (unique2.length / allSet2.size * 100).toFixed(0) + '% van lijst 2' : '';
+
+  const n = sequence.length;
+  let bothCount = 0, only1Count = 0, only2Count = 0;
+  for (let i = 0; i < n; i++) {
+    if      (res1.covered[i] && res2.covered[i]) bothCount++;
+    else if (res1.covered[i])                    only1Count++;
+    else if (res2.covered[i])                    only2Count++;
+  }
+  const pBoth  = (bothCount  / n * 100);
+  const pOnly1 = (only1Count / n * 100);
+  const pOnly2 = (only2Count / n * 100);
+
+  document.getElementById('cov-seg-both').style.width  = pBoth.toFixed(2)  + '%';
+  document.getElementById('cov-seg-only1').style.width = pOnly1.toFixed(2) + '%';
+  document.getElementById('cov-seg-only2').style.width = pOnly2.toFixed(2) + '%';
+
+  document.getElementById('cov-leg-both').textContent  = 'Beide lijsten ('  + bothCount  + ' res., ' + pBoth.toFixed(1)  + '%)';
+  document.getElementById('cov-leg-only1').textContent = 'Alleen lijst 1 (' + only1Count + ' res., ' + pOnly1.toFixed(1) + '%)';
+  document.getElementById('cov-leg-only2').textContent = 'Alleen lijst 2 (' + only2Count + ' res., ' + pOnly2.toFixed(1) + '%)';
+
+  document.getElementById('comparison-section').style.display = 'block';
+}
+
+// ── Peptide table builders ────────────────────────────────────────────
+function buildSinglePepTables(res) {
+  const section = document.getElementById('pep-section');
+  section.className = 'pep-section';
+
+  const foundRows = res.hits.length
+    ? res.hits.map(h => {
+        const pos = h.positions.map(([s, e]) => (s+1) + '\u2013' + (e+1)).join(', ');
+        return '<tr><td class="pep-seq found">' + h.pep + '</td><td>' + h.pep.length + '</td><td class="pos-cell">' + pos + '</td></tr>';
+      }).join('')
+    : '<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:12px">Geen</td></tr>';
+
+  const missRows = res.misses.length
+    ? res.misses.map(m => '<tr><td class="pep-seq missed">' + m + '</td><td>' + m.length + '</td></tr>').join('')
+    : '<tr><td colspan="2" style="color:var(--accent);text-align:center;padding:12px">Alle peptiden gemapped!</td></tr>';
+
+  section.innerHTML =
+    '<div class="pep-box"><div class="pep-box-header found-header">Gevonden peptiden</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th><th>Positie(s)</th></tr></thead><tbody>' + foundRows + '</tbody></table></div>' +
+    '<div class="pep-box"><div class="pep-box-header miss-header">Niet gevonden peptiden</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th></tr></thead><tbody>' + missRows + '</tbody></table></div>';
+}
+
+function buildPairwisePepTables(res1, res2) {
+  const section = document.getElementById('pep-section');
+  section.className = 'pep-section pairwise-peps';
+
+  function foundRows(res, cls) {
+    return res.hits.length
+      ? res.hits.map(h => {
+          const pos = h.positions.map(([s, e]) => (s+1) + '\u2013' + (e+1)).join(', ');
+          return '<tr><td class="pep-seq ' + cls + '">' + h.pep + '</td><td>' + h.pep.length + '</td><td class="pos-cell">' + pos + '</td></tr>';
+        }).join('')
+      : '<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:12px">Geen</td></tr>';
+  }
+
+  function missRows(res, okColor) {
+    return res.misses.length
+      ? res.misses.map(m => '<tr><td class="pep-seq missed">' + m + '</td><td>' + m.length + '</td></tr>').join('')
+      : '<tr><td colspan="2" style="color:' + okColor + ';text-align:center;padding:12px">Alle peptiden gemapped! </td></tr>';
+  }
+
+  section.innerHTML =
+    '<div class="pep-box"><div class="pep-box-header found-header">Gevonden \u003A lijst 1</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th><th>Positie(s)</th></tr></thead><tbody>' + foundRows(res1, 'found') + '</tbody></table></div>' +
+
+    '<div class="pep-box"><div class="pep-box-header found2-header">Gevonden \u003A lijst 2</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th><th>Positie(s)</th></tr></thead><tbody>' + foundRows(res2, 'found2') + '</tbody></table></div>' +
+
+    '<div class="pep-box"><div class="pep-box-header miss-header">Niet gevonden \u003A lijst 1</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th></tr></thead><tbody>' + missRows(res1, 'var(--accent)') + '</tbody></table></div>' +
+
+    '<div class="pep-box"><div class="pep-box-header miss-header">Niet gevonden \u003A lijst 2</div>' +
+    '<table><thead><tr><th>Sequentie</th><th>Len</th></tr></thead><tbody>' + missRows(res2, 'var(--accent2)') + '</tbody></table></div>';
 }
 
 // ── Row-width live update ─────────────────────────────────────────────
 document.getElementById('row-width').addEventListener('change', () => {
   if (!lastResult) return;
   const width = parseInt(document.getElementById('row-width').value);
-  document.getElementById('seq-display').innerHTML =
-    buildSeqHTML(lastResult.sequence, lastResult.covered, width);
+  document.getElementById('seq-display').innerHTML = lastResult.isPairwise
+    ? buildPairwiseSeqHTML(lastResult.sequence, lastResult.res1.covered, lastResult.res2.covered, width)
+    : buildSeqHTML(lastResult.sequence, lastResult.res1.covered, width);
 });
 
 // ── Export CSV ────────────────────────────────────────────────────────
 function exportCSV() {
   if (!lastResult) return;
-  const { hits, misses } = lastResult;
-  const rows = [['Peptide', 'Lengte', 'Start (1-based)', 'Eind (1-based)', 'Status']];
-  for (const h of hits) {
-    for (const [s, e] of h.positions) {
-      rows.push([h.pep, h.pep.length, s + 1, e + 1, 'Gevonden']);
+  const { res1, res2, isPairwise } = lastResult;
+  let rows;
+
+  if (isPairwise) {
+    rows = [['Peptide', 'Lengte', 'Start (1-based)', 'Eind (1-based)', 'Status lijst 1', 'Status lijst 2']];
+    const allPeps = new Set([
+      ...res1.hits.map(h => h.pep), ...res1.misses,
+      ...res2.hits.map(h => h.pep), ...res2.misses
+    ]);
+    const map1 = Object.fromEntries(res1.hits.map(h => [h.pep, h]));
+    const map2 = Object.fromEntries(res2.hits.map(h => [h.pep, h]));
+    for (const pep of allPeps) {
+      const h1 = map1[pep], h2 = map2[pep];
+      const s1 = h1 ? 'Gevonden' : 'Niet gemapped';
+      const s2 = h2 ? 'Gevonden' : 'Niet gemapped';
+      if (h1) {
+        for (const [s, e] of h1.positions) rows.push([pep, pep.length, s + 1, e + 1, s1, s2]);
+      } else {
+        rows.push([pep, pep.length, '', '', s1, s2]);
+      }
     }
+  } else {
+    rows = [['Peptide', 'Lengte', 'Start (1-based)', 'Eind (1-based)', 'Status']];
+    for (const h of res1.hits) {
+      for (const [s, e] of h.positions) rows.push([h.pep, h.pep.length, s + 1, e + 1, 'Gevonden']);
+    }
+    for (const m of res1.misses) rows.push([m, m.length, '', '', 'Niet gemapped']);
   }
-  for (const m of misses) rows.push([m, m.length, '', '', 'Niet gemapped']);
 
   const csv  = rows.map(r => r.join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
@@ -766,11 +1021,10 @@ function exportCSV() {
 
 // ── Reset ─────────────────────────────────────────────────────────────
 function resetAll() {
-  fastaData = peptideData = lastResult = null;
-  ['fasta-file', 'excel-file'].forEach(id => document.getElementById(id).value = '');
-  ['fasta-status', 'excel-status'].forEach(id => document.getElementById(id).textContent = '');
-  ['fasta-zone', 'excel-zone'].forEach(id =>
-    document.getElementById(id).classList.remove('loaded'));
+  fastaData = peptideData = peptideData2 = lastResult = null;
+  ['fasta-file', 'excel-file', 'excel2-file'].forEach(id => document.getElementById(id).value = '');
+  ['fasta-status', 'excel-status', 'excel2-status'].forEach(id => document.getElementById(id).textContent = '');
+  ['fasta-zone', 'excel-zone', 'excel2-zone'].forEach(id => document.getElementById(id).classList.remove('loaded'));
   document.getElementById('results').style.display = 'none';
   document.getElementById('run-btn').disabled = true;
   hideAlert();
@@ -780,7 +1034,7 @@ function resetAll() {
 function showAlert(msg, type) {
   const el = document.getElementById('alert-box');
   el.textContent = msg;
-  el.className   = `alert ${type} show`;
+  el.className   = 'alert ' + type + ' show';
 }
 function hideAlert() {
   document.getElementById('alert-box').className = 'alert';
